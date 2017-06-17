@@ -6,6 +6,8 @@ uniform vec4 color1;
 uniform vec4 color2;
 uniform vec4 color3;
 
+uniform float iGlobalTime;
+
 vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords)
 {
     float denom = (point2.y-point3.y)*(point1.x-point3.x)+(point3.x-point2.x)*(point1.y-point3.y);
@@ -19,6 +21,6 @@ vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords)
         return vec4(0);
     }
     else {
-        return color1*Wv1 + color2*Wv2 + color3*Wv3;
+        return color1*(Wv1+abs(cos(iGlobalTime))*Wv2) + color2*Wv2 + color3*Wv3;
     }
 }

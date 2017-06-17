@@ -32,6 +32,8 @@ end
 function app:update(dt)
     self.timer = self.timer + dt
     self.mouse[1], self.mouse[2] = love.mouse.getPosition()
+
+    shaders.triangle:send('iGlobalTime', self.timer)
 end
 
 function app:resize(w, h)
